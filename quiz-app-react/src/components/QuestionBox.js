@@ -1,22 +1,24 @@
-import React, { userState } from 'react'
+import React, {useState} from "react";
 
-const QuestionBox = ({ question, options }) => {
-  const [answer, setAnswer] = userState(options);
+const QuestionBox = ({question, options, selected}) => {
+  const [answer, setAnswer] = useState(options);
   return (
-    <div className='questionBox'>
-      <div className='question'>{question}</div>
+    <div className="questionBox">
+      <div className="question">{question}</div>
       {answer.map((text, index) => (
         <button
           key={index}
-          className='answerBtn'
+          className="answerBtn"
           onClick={() => {
-            setAnswer([text])
-        }}>
+            setAnswer([text]);
+            selected(text);
+          }}
+        >
           {text}
         </button>
       ))}
     </div>
-  )
-}
+  );
+};
 
 export default QuestionBox;
